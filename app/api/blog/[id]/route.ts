@@ -3,13 +3,13 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  req: Request,
+  context: { params: { id: string } }
 ) {
   try {
     const blog = await prisma.blog.findUnique({
       where: {
-        id: params.id
+        id: context.params.id
       }
     });
 
